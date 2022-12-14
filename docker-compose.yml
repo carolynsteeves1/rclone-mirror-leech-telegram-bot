@@ -10,7 +10,7 @@ services:
       - VPN_SERVICE_PROVIDER=surfshark   # See https://github.com/qdm12/gluetun/wiki
       - VPN_TYPE=openvpn
       - OPENVPN_USER=Dj2ryxYSc6RB2f5wRMZzDgJz
-      - OPENVPN_PASSWORD=CpLsWmEVvgVcT8264cbMBmkY
+      - OPENVPN_PASSWORD=3WeXEx2rwrTR32x9YeAEZVr3
       - SERVER_COUNTRIES=United States   
     ports:
       - "80:80"
