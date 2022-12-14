@@ -1,11 +1,26 @@
 version: "3.3"
 
 services:
-  app:
-    build: .
-    command: bash start.sh
-    restart: on-failure
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - VPN_SERVICE_PROVIDER=surfshark   # See https://github.com/qdm12/gluetun/wiki
+      - VPN_TYPE=openvpn
+      - OPENVPN_USER=Dj2ryxYSc6RB2f5wRMZzDgJz
+      - OPENVPN_PASSWORD=CpLsWmEVvgVcT8264cbMBmkY
+      - SERVER_COUNTRIES=United States   
     ports:
       - "80:80"
       - "8080:8080"
-      
+    restart: always
+  app:
+    build: .
+    network_mode: "service:gluetun"
+    depends_on:
+      gluetun:
+        condition: service_started 
+    command: bash start.sh
+    restart: always
